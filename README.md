@@ -32,7 +32,9 @@ A ideia central é mostrar como automatizar todas as etapas de qualidade e entre
 lab-cicd/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml          # Pipeline principal
+│       ├── lint.yml        # Job de lint
+│       ├── test.yml        # Job de testes
+│       └── build.yml       # Job de build da imagem Docker
 ├── prisma/
 │   └── schema.prisma       # Schema do banco de dados
 ├── src/
@@ -88,14 +90,16 @@ docker run -p 3000:3000 lab-cicd
 
 ## 🔄 Pipeline CI/CD
 
-A pipeline é disparada em todo `push` ou `pull_request` para a branch `main`. Os jobs rodam em paralelo onde possível e são separados por responsabilidade:
+A pipeline é disparada em todo `push` ou `pull_request` para a branch `main`. Os jobs rodam em paralelo e são separados por responsabilidade:
 
 ```
 push/PR para main
        │
-       ├──► [lint]    → Verifica estilo e qualidade do código
+       ├──► [lint]    → Verifica estilo e qualidade do código (ESLint)
        │
-       ├──► [test]    → Executa testes Jest com cobertura
+       ├──► [test]    → Executa testes Jest
+       │
+       └──► [build]   → Builda a imagem Docker a partir do Dockerfile
 
 ```
 
