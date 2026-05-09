@@ -12,7 +12,7 @@ app.get('/status', (req, res) => {
 
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany();
-  res.status(200).json(users);
+  res.status(200).json(users)
 });
 
 module.exports = app;
