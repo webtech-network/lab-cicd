@@ -1,7 +1,6 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const { getUsers } = require('./userService');
 
-const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
@@ -11,7 +10,7 @@ app.get('/status', (req, res) => {
 });
 
 app.get('/users', async (req, res) => {
-  const users = await prisma.user.findMany();
+  const users = await getUsers();
   res.status(200).json(users);
 });
 
