@@ -22,6 +22,7 @@ describe('GET /users', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body[0].name).toBe('Alice');
     expect(response.body[0].email).toBe('alice@example.com');
+    expect(response.body[0].endereco).toBe('teste');
   });
 
   it('Deve retornar lista vazia quando não há usuários', async () => {
