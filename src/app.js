@@ -3,7 +3,7 @@ const { getUsers } = require('./userService');
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json())
 
 app.get('/status', (req, res) => {
   res.status(200).json({ status: 'API Online e CI/CD configurado!' });
